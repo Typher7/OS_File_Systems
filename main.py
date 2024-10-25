@@ -33,8 +33,8 @@ class FileSystem:
 
         if directory and file_name in directory.files:
             return directory.files[file_name].content
-        print(f"Error: File '{file_name}' not found in '{path}'.")
-        return None
+        
+        return f"Error: File '{file_name}' not found in '{path}'."
 
     def write_to_file(self, path, file_name, content):
         # Navigate to the directory 'path' containing the file
@@ -107,5 +107,21 @@ def main():
     fs.delete_file("/docs", "file1.txt")
     fs.read_file("/docs", "file1.txt")
     
+    #Test same file creating error
+    fs.create_file("/docs", "file1.txt", "Hello World!")
+    fs.create_file("/docs", "file1.txt", "Hello World!")
+
+    #Test unknown directory
+    fs.create_file("/user", "file1.txt", "Hello World!")
+
+    #Tests deletion of files that don't exist
+    fs.delete_file("/docs", "file4.txt")
+
+    #Reads file that doesn't exist
+    print("Reading 'file5.txt':", fs.read_file("/docs", "file5.txt"))
+
+    #Writing file that doesn't exist
+    fs.write_to_file("/docs", "file5.txt", "Updated content")
+
 if __name__ == "__main__":
     main()
