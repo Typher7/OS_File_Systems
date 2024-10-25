@@ -10,7 +10,8 @@ fs.create_file("//docs/", "file.txt", "Content")
 if "file.txt" in fs.navigate_to_directory("/docs").files:
         print("Test create_file_multiple_slashes: PASSED")
 else:
-        print("Test create_file_multiple_slashes: FAILED")clear
+        print("Test create_file_multiple_slashes: FAILED")
+        
 fs.create_file("/docs", "file.txt", "Content")
 if fs.read_file("/docs//", "file.txt") == "Content":
         print("Test read_file_multiple_slashes: PASSED")
